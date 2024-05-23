@@ -21,14 +21,15 @@ public class SilverDoorManager : MonoBehaviour
     {
         if (isNearDoor && Input.GetKeyDown(KeyCode.A))
         {
-            if (thePlayer.hasSilverKey)
+            if (thePlayer.hasSilverKey && isLock)
             {
                 // 문을 여는 로직 (예: 문을 비활성화하거나 다른 씬으로 이동)
                 Debug.Log("The door is opened with the silver key!");
                 TextLoader.instance.SetText(openDoor);
                 Wall.SetActive(false);
+                isLock = false;
             }
-            else
+            else if (!thePlayer.hasSilverKey)
             {
                 TextLoader.instance.SetText(needKey);
             }

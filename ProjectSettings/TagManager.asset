@@ -45,6 +45,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Obstacle
+    uniqueID: 456321673
+    locked: 0
   - name: Player
     uniqueID: 2293738555
     locked: 0
