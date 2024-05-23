@@ -15,6 +15,7 @@ public class PlayerMove : MonoBehaviour
     public string itemname;
     private bool isActive = false;
     public float idleTime = 1f;
+    public bool hasSilverKey = false;
 
     // Start is called before the first frame update
     void Start()

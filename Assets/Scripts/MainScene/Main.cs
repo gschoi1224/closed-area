@@ -7,9 +7,11 @@ public class Main : MonoBehaviour
 {
     public Button startButton;
     public Button exitButton;
+    public Button optionsButton;
     private Button currentButton;
     private Vector3 originalScale;
     private bool isHighlighted = false;
+    public AudioSource catSound;
 
     void Start()
     {
@@ -22,20 +24,38 @@ public class Main : MonoBehaviour
         startButton.onClick.AddListener(OnStartButtonClick);
         exitButton.onClick.AddListener(OnExitButtonClick);
 
+        // 옵션 클릭 이벤트 연결
+        optionsButton.onClick.AddListener(OpenSettings); 
     }
 
     void Update()
     {
         // 방향키 입력 처리
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && currentButton != startButton)
+        if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            HighlightButton(startButton);
-            currentButton = startButton;
+            if (currentButton == startButton)
+            {
+                HighlightButton(optionsButton);
+                currentButton = optionsButton;
+            }
+            else if (currentButton == optionsButton)
+            {
+                HighlightButton(exitButton);
+                currentButton = exitButton;
+            }
         }
-        else if (Input.GetKeyDown(KeyCode.RightArrow) && currentButton != exitButton)
+        else if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            HighlightButton(exitButton);
-            currentButton = exitButton;
+            if (currentButton == exitButton)
+            {
+                HighlightButton(optionsButton);
+                currentButton = optionsButton;
+            }
+            else if (currentButton == optionsButton)
+            {
+                HighlightButton(startButton);
+                currentButton = startButton;
+            }
         }
 
         // 엔터키 입력 처리
@@ -66,6 +86,12 @@ public class Main : MonoBehaviour
     void OnStartButtonClick()
     {
         // 게임 시작 로직
+        if (catSound != null && catSound.clip != null)
+        {
+            catSound.loop = false;
+            Debug.Log("Cat Sound Play");
+            catSound.Play();
+        }
         SceneManager.LoadScene("GameScene");
     }
 
@@ -74,5 +100,12 @@ public class Main : MonoBehaviour
         // 게임 종료 로직
         Application.Quit();
         Debug.Log("Exit button clicked"); // 에디터에서 작동 확인용
+    }
+    void OpenSettings()
+    {
+        if (OptionsManager.Instance != null)
+        {
+            OptionsManager.Instance.OpenOptions();
+        }
     }
 }

@@ -20,6 +20,7 @@ public class ItemManager : MonoBehaviour
         // 플레이어가 아이템과 충돌하고 특정 키를 눌렀을 때 아이템 장착
         if (triggerOn && thePlayer.IsKeydown)
         {
+            Debug.Log(this.name);
             if (this.name == "woodbox")
             {
                 Debug.Log("get a flashlight");
