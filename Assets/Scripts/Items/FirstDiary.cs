@@ -21,15 +21,10 @@ public class FirstDiary : MonoBehaviour
         // 플레이어가 아이템과 충돌하고 특정 키를 눌렀을 때 아이템 장착
         if (triggerOn && thePlayer.IsKeydown)
         {
-            Debug.Log(this.name);
-            if (this.name == "first_diary")
-            {
-                Debug.Log("get a firstDiary");
                 Inventory.SetActive(false);
                 Canvas.SetActive(true);
                 Text.SetActive(true);
-                isReadingDiary = true;
-            }
+                isReadingDiary = true;   
         }
         // 플레이어가 연구 일지를 읽고 있을 때, 다른 키를 눌러 상태를 벗어나기
         if (isReadingDiary && Input.anyKeyDown)
