@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class escapedoor : MonoBehaviour
 {
@@ -25,13 +26,15 @@ public class escapedoor : MonoBehaviour
             // Clear the checkTimer flag if necessary
             checkTimer = false;
         }
-        if (triggerOn && thePlayer.IsKeydown && !canescape) // 탈출 불가
+        if (triggerOn && thePlayer.IsKeydown && !thePlayer.saveCat) // 탈출 불가
         {
             TextLoader.instance.SetText("cantescape");
         }
-        else if (!checkTimer && triggerOn && thePlayer.IsKeydown && canescape)
+        else if (!checkTimer && triggerOn && thePlayer.IsKeydown && thePlayer.saveCat)
         {
+            PlayerPrefs.SetInt("EndingReason", 0);
             TextLoader.instance.SetText("ClearDoor");
+            SceneManager.LoadScene("EndingScene");
             timer = 0f;
             checkTimer = true;
         }

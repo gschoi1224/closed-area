@@ -22,7 +22,6 @@ public class PasswordManager : MonoBehaviour
     // 버튼 클릭 시 호출되는 메소드
     public void OnButtonClick(string character)
     {
-        Debug.Log(character);
         // 입력된 문자를 추가
         texts[enteredPassword.Length].text = character;
         enteredPassword += character;

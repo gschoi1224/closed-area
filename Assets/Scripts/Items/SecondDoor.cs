@@ -21,7 +21,7 @@ public class SecondDoor : MonoBehaviour
             if (isLock)
             {
                 // 문을 여는 로직 (예: 문을 비활성화하거나 다른 씬으로 이동)
-                OpenDoor();
+                TextLoader.instance.SetText("NeedPassword");
             }
         }
     }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Monster : MonoBehaviour
 {
@@ -93,5 +94,14 @@ public class Monster : MonoBehaviour
     {
         isReset = false;
         goPlayer = true;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "Player") // Equals로 변경
+        {
+            PlayerPrefs.SetInt("EndingReason", 1);
+            SceneManager.LoadScene("EndingScene");
+        }
     }
 }
