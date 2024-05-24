@@ -18,7 +18,6 @@ public class SecondDoor : MonoBehaviour
     {
         if (isNearDoor && Input.GetKeyDown(KeyCode.A))
         {
-            Debug.Log(isNearDoor);
             if (isLock)
             {
                 // 문을 여는 로직 (예: 문을 비활성화하거나 다른 씬으로 이동)
@@ -31,7 +30,6 @@ public class SecondDoor : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("!!!!!!!!!!!!!!!!!");
         if (other.CompareTag("Player"))
         {
             isNearDoor = true;

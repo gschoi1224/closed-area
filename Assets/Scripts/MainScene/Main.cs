@@ -7,7 +7,7 @@ public class Main : MonoBehaviour
 {
     public Button startButton;
     public Button exitButton;
-    public Button optionsButton;
+    //public Button optionsButton;
     private Button currentButton;
     private Vector3 originalScale;
     private bool isHighlighted = false;
@@ -24,8 +24,8 @@ public class Main : MonoBehaviour
         startButton.onClick.AddListener(OnStartButtonClick);
         exitButton.onClick.AddListener(OnExitButtonClick);
 
-        // 옵션 클릭 이벤트 연결
-        optionsButton.onClick.AddListener(OpenSettings); 
+        //// 옵션 클릭 이벤트 연결
+        //optionsButton.onClick.AddListener(OpenSettings); 
     }
 
     void Update()
@@ -34,11 +34,11 @@ public class Main : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             if (currentButton == startButton)
-            {
-                HighlightButton(optionsButton);
-                currentButton = optionsButton;
-            }
-            else if (currentButton == optionsButton)
+            //{
+            //    HighlightButton(optionsButton);
+            //    currentButton = optionsButton;
+            //}
+            //else if (currentButton == optionsButton)
             {
                 HighlightButton(exitButton);
                 currentButton = exitButton;
@@ -48,11 +48,11 @@ public class Main : MonoBehaviour
         {
             if (currentButton == exitButton)
             {
-                HighlightButton(optionsButton);
-                currentButton = optionsButton;
-            }
-            else if (currentButton == optionsButton)
-            {
+            //    HighlightButton(optionsButton);
+            //    currentButton = optionsButton;
+            //}
+            //else if (currentButton == optionsButton)
+            //{
                 HighlightButton(startButton);
                 currentButton = startButton;
             }
@@ -101,11 +101,11 @@ public class Main : MonoBehaviour
         Application.Quit();
         Debug.Log("Exit button clicked"); // 에디터에서 작동 확인용
     }
-    void OpenSettings()
-    {
-        if (OptionsManager.Instance != null)
-        {
-            OptionsManager.Instance.OpenOptions();
-        }
-    }
+    //void OpenSettings()
+    //{
+    //    if (OptionsManager.Instance != null)
+    //    {
+    //        OptionsManager.Instance.OpenOptions();
+    //    }
+    //}
 }

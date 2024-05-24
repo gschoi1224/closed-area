@@ -16,6 +16,7 @@ public class PlayerMove : MonoBehaviour
     private bool isActive = false;
     public float idleTime = 1f;
     public bool hasSilverKey = false;
+    public bool hasRedKey = false;
 
     // Start is called before the first frame update
     void Start()
