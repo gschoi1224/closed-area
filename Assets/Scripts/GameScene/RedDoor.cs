@@ -23,11 +23,14 @@ public class RedDoor : MonoBehaviour
             if (thePlayer.hasSilverKey && isLock && !thePlayer.hasRedKey)
             {
                 // 키가 없
+                SoundManager.instance.PlayEffect(2);
                 TextLoader.instance.SetText("MismatchKey");
             }
             else if (isLock && thePlayer.hasRedKey)
             {
                 // 문을 여는 로직 (예: 문을 비활성화하거나 다른 씬으로 이동)
+                SoundManager.instance.PlayEffect(3);
+                SoundManager.instance.PlayBGM(3);
                 TextLoader.instance.SetText("CorrectPassword");
                 Wall.SetActive(false);
                 isLock = false;
@@ -36,6 +39,7 @@ public class RedDoor : MonoBehaviour
             }
             else if (!thePlayer.hasRedKey)
             {
+                SoundManager.instance.PlayEffect(2);
                 TextLoader.instance.SetText("mainupdoor");
             }
         }
@@ -50,6 +54,7 @@ public class RedDoor : MonoBehaviour
             if (!thePlayer.hasRedKey)
             {
                 // 문과 충돌할 때 플레이어를 멈추게 하거나 다른 로직을 추가
+                SoundManager.instance.PlayEffect(2);
                 TextLoader.instance.SetText("TutorialDoor");
             }
         }

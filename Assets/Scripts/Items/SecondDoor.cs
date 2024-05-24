@@ -20,8 +20,9 @@ public class SecondDoor : MonoBehaviour
         {
             if (isLock)
             {
-                // 문을 여는 로직 (예: 문을 비활성화하거나 다른 씬으로 이동)
+                // 문이 닫혀있음
                 TextLoader.instance.SetText("NeedPassword");
+                SoundManager.instance.PlayEffect(2);
             }
         }
     }
@@ -32,6 +33,7 @@ public class SecondDoor : MonoBehaviour
         TextLoader.instance.SetText("CorrectPassword");
         Wall.SetActive(false);
         isLock = false;
+        SoundManager.instance.PlayEffect(3);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

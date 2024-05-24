@@ -15,6 +15,7 @@ public class CameraManager : MonoBehaviour
     void Start()
     {
         isTargeting = true;
+        SoundManager.instance.PlayBGM(1);
     }
 
     // Update is called once per frame

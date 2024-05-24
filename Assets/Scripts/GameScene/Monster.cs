@@ -6,7 +6,7 @@ public class Monster : MonoBehaviour
     public Transform player; // 플레이어의 Transform
     public Transform spawn;
     public float speed = 1.5f; // 몬스터 이동 속도
-    public float followDistance = 20f; // 플레이어를 따라가기 시작하는 거리
+    //public float followDistance = 20f; // 플레이어를 따라가기 시작하는 거리
     public float rayDistance = 1f; // 레이캐스트 거리
     public LayerMask obstacleLayer; // 장애물 레이어
 
@@ -100,6 +100,7 @@ public class Monster : MonoBehaviour
     {
         if (collision.gameObject.name == "Player") // Equals로 변경
         {
+            SoundManager.instance.PlayEffect(7);
             PlayerPrefs.SetInt("EndingReason", 1);
             SceneManager.LoadScene("EndingScene");
         }

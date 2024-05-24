@@ -24,6 +24,7 @@ public class SilverDoorManager : MonoBehaviour
             if (thePlayer.hasSilverKey && isLock)
             {
                 // 문을 여는 로직 (예: 문을 비활성화하거나 다른 씬으로 이동)
+                SoundManager.instance.PlayEffect(3);
                 Debug.Log("The door is opened with the silver key!");
                 TextLoader.instance.SetText(openDoor);
                 Wall.SetActive(false);
@@ -31,6 +32,7 @@ public class SilverDoorManager : MonoBehaviour
             }
             else if (!thePlayer.hasSilverKey)
             {
+                SoundManager.instance.PlayEffect(2);
                 TextLoader.instance.SetText(needKey);
             }
         }
@@ -46,7 +48,7 @@ public class SilverDoorManager : MonoBehaviour
             {
                 // 문과 충돌할 때 플레이어를 멈추게 하거나 다른 로직을 추가
                 TextLoader.instance.SetText(pressKey);
-                Debug.Log("Player needs a silver key to pass through the door.");
+                SoundManager.instance.PlayEffect(2);
             }
         }
     }

@@ -1,50 +1,105 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    public static SoundManager Instance { get; private set; }
+    public static SoundManager instance;
+    public AudioSource bgm;
+    public AudioSource effect;
+    public AudioClip[] bgmList;
+    public AudioClip[] effectList;
+    public AudioClip[] catList;
 
-    public AudioSource backgroundMusicSource;
-    public AudioClip backgroundMusic;
+    public AudioSource player;
+    public AudioSource cat;
+    public AudioSource monster;
 
     private void Awake()
     {
-        if (Instance == null)
+        if (instance == null)
         {
-            Instance = this;
+            instance = this;
+            bgm = transform.Find("BGM").GetComponent<AudioSource>();
+            effect = transform.Find("Effect").GetComponent<AudioSource>();
+            player = transform.Find("Player").GetComponent<AudioSource>();
+            cat = transform.Find("Cat").GetComponent<AudioSource>();
+            monster = transform.Find("Monster").GetComponent<AudioSource>();
             DontDestroyOnLoad(gameObject);
         }
-        else
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    public void PlayerOn()
+    {
+        if (!player.isPlaying)
         {
-            Destroy(gameObject);
+            player.Play();
         }
     }
 
-    private void Start()
+    public void PlayerOff()
     {
-        PlayBackgroundMusic();
+        player.Stop();
     }
 
-    public void PlayBackgroundMusic()
+    public void CatOn(int index)
     {
-        if (backgroundMusicSource != null && backgroundMusic != null)
+        cat.Stop();
+        cat.clip = catList[index];
+        cat.Play();
+    }
+
+    public void CatOff()
+    {
+        cat.Stop();
+    }
+
+    public void MonsterOn()
+    {
+        if (!monster.isPlaying)
         {
-            Debug.Log("Playing background music");
-            backgroundMusicSource.clip = backgroundMusic;
-            backgroundMusicSource.loop = true;
-            backgroundMusicSource.Play();
-        }
-        else
-        {
-            Debug.LogError("AudioSource or AudioClip is missing");
+            monster.Play();
         }
     }
 
-    public void SetBackgroundMusicVolume(float volume)
+    public void MonsterOff()
     {
-        if (backgroundMusicSource != null)
-        {
-            backgroundMusicSource.volume = volume;
-        }
+        monster.Stop();
+    }
+
+    public void PlayBGM(int index)
+    {
+        Debug.Log(bgm);
+        Debug.Log(index);
+        bgm.Stop();
+        bgm.clip = bgmList[index];
+        bgm.Play();
+    }
+
+    public void StopBGM()
+    {
+        if (bgm.isPlaying)
+            bgm.Stop();
+    }
+
+    public void PlayEffect(int index)
+    {
+        effect.PlayOneShot(effectList[index]);
+    }
+
+    public void StopEffect()
+    {
+        effect.Stop();
     }
 }

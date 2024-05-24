@@ -51,6 +51,7 @@ public class LockerManager : MonoBehaviour
             Monster.GoRespawn();
         }
         Debug.Log(hidePosition.position);
+        SoundManager.instance.PlayEffect(6);
         yield return new WaitForSeconds(0.35f); // 애니메이션 길이에 맞게 조정
         player.transform.position = hidePosition.position;
         player.SetActive(false); // 플레이어를 보이지 않게 함
@@ -64,6 +65,7 @@ public class LockerManager : MonoBehaviour
         {
             Monster.GoToPlayer();
         }
+        SoundManager.instance.PlayEffect(6);
         yield return new WaitForSeconds(0.35f); // 애니메이션 길이에 맞게 조정
         player.transform.position = outsidePosition.position; // 플레이어를 캐비닛 밖으로 이동
         player.SetActive(true); // 플레이어를 보이게 함

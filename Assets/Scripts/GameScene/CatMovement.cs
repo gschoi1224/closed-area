@@ -22,7 +22,9 @@ public class CatMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         animator.SetTrigger("startRunning");
+        SoundManager.instance.CatOn(0);
         yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).IsName("Run"));
+        SoundManager.instance.CatOn(3);
         isRunning = true;
     }
 

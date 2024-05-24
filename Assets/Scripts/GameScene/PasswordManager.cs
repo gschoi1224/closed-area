@@ -25,6 +25,7 @@ public class PasswordManager : MonoBehaviour
         // 입력된 문자를 추가
         texts[enteredPassword.Length].text = character;
         enteredPassword += character;
+        SoundManager.instance.PlayEffect(4);
         if (enteredPassword.Length == 4)
         {
             CheckPassword();
@@ -38,12 +39,14 @@ public class PasswordManager : MonoBehaviour
         if (enteredPassword == correctPassword)
         {
             Debug.Log("Correct Password");
+            SoundManager.instance.PlayEffect(3);
             Door.OpenDoor();
             keyManager.ExitCanvas(true);
             // 비밀번호가 일치할 경우 실행할 로직 추가
         }
         else
         {
+            SoundManager.instance.PlayEffect(5);
             Debug.Log("Incorrect Password");
             // 비밀번호가 일치하지 않을 경우 실행할 로직 추가
         }

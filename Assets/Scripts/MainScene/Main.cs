@@ -11,7 +11,6 @@ public class Main : MonoBehaviour
     private Button currentButton;
     private Vector3 originalScale;
     private bool isHighlighted = false;
-    public AudioSource catSound;
 
     void Start()
     {
@@ -25,7 +24,9 @@ public class Main : MonoBehaviour
         exitButton.onClick.AddListener(OnExitButtonClick);
 
         //// 옵션 클릭 이벤트 연결
-        //optionsButton.onClick.AddListener(OpenSettings); 
+        //optionsButton.onClick.AddListener(OpenSettings);
+
+        SoundManager.instance.PlayBGM(0);
     }
 
     void Update()
@@ -42,6 +43,7 @@ public class Main : MonoBehaviour
             {
                 HighlightButton(exitButton);
                 currentButton = exitButton;
+                SoundManager.instance.PlayEffect(0);
             }
         }
         else if (Input.GetKeyDown(KeyCode.UpArrow))
@@ -55,6 +57,7 @@ public class Main : MonoBehaviour
             //{
                 HighlightButton(startButton);
                 currentButton = startButton;
+                SoundManager.instance.PlayEffect(0);
             }
         }
 
@@ -86,12 +89,7 @@ public class Main : MonoBehaviour
     void OnStartButtonClick()
     {
         // 게임 시작 로직
-        if (catSound != null && catSound.clip != null)
-        {
-            catSound.loop = false;
-            Debug.Log("Cat Sound Play");
-            catSound.Play();
-        }
+        SoundManager.instance.PlayEffect(1);
         SceneManager.LoadScene("GameScene");
     }
 
