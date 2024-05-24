@@ -5,12 +5,13 @@ using UnityEngine;
 public class SilverDoorManager : MonoBehaviour
 {
     private bool isNearDoor = false;
-    private bool isLock = true;
+    public bool isLock = true;
     private PlayerMove thePlayer;
     public string pressKey;
     public string needKey;
     public string openDoor;
     public GameObject Wall;
+    public GameObject OpenedDoor;
 
     private void Start()
     {
@@ -28,6 +29,8 @@ public class SilverDoorManager : MonoBehaviour
                 Debug.Log("The door is opened with the silver key!");
                 TextLoader.instance.SetText(openDoor);
                 Wall.SetActive(false);
+                gameObject.SetActive(false);
+                OpenedDoor.SetActive(true);
                 isLock = false;
             }
             else if (!thePlayer.hasSilverKey)

@@ -8,6 +8,7 @@ public class SecondDoor : MonoBehaviour
     public bool isLock = true;
     private PlayerMove thePlayer;
     public GameObject Wall;
+    public GameObject OpenedDoor;
 
     private void Start()
     {
@@ -34,6 +35,8 @@ public class SecondDoor : MonoBehaviour
         Wall.SetActive(false);
         isLock = false;
         SoundManager.instance.PlayEffect(3);
+        OpenedDoor.SetActive(true);
+        gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

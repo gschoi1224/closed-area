@@ -5,11 +5,12 @@ using UnityEngine;
 public class RedDoor : MonoBehaviour
 {
     private bool isNearDoor = false;
-    private bool isLock = true;
+    public bool isLock = true;
     private PlayerMove thePlayer;
     public GameObject Wall;
     public GameObject Monster;
     public Monster CMonster;
+    public GameObject OpenedDoor;
 
     private void Start()
     {
@@ -36,6 +37,8 @@ public class RedDoor : MonoBehaviour
                 isLock = false;
                 Monster.SetActive(true);
                 CMonster.GoToPlayer();
+                OpenedDoor.SetActive(true);
+                gameObject.SetActive(false);
             }
             else if (!thePlayer.hasRedKey)
             {
