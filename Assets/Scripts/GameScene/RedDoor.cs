@@ -9,6 +9,7 @@ public class RedDoor : MonoBehaviour
     private PlayerMove thePlayer;
     public GameObject Wall;
     public GameObject Monster;
+    public Monster CMonster;
 
     private void Start()
     {
@@ -21,7 +22,7 @@ public class RedDoor : MonoBehaviour
         {
             if (thePlayer.hasSilverKey && isLock && !thePlayer.hasRedKey)
             {
-                // 키가 없음
+                // 키가 없
                 TextLoader.instance.SetText("MismatchKey");
             }
             else if (isLock && thePlayer.hasRedKey)
@@ -31,6 +32,7 @@ public class RedDoor : MonoBehaviour
                 Wall.SetActive(false);
                 isLock = false;
                 Monster.SetActive(true);
+                CMonster.GoToPlayer();
             }
             else if (!thePlayer.hasRedKey)
             {

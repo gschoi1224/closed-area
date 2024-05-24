@@ -10,7 +10,7 @@ public class CatFollow : MonoBehaviour
 
     void Start()
     {
-        animator = GetComponent<Animator>(); // 애니메이터 컴포넌트 가져오기
+        //animator = GetComponent<Animator>(); // 애니메이터 컴포넌트 가져오기
     }
 
     void Update()
@@ -21,7 +21,7 @@ public class CatFollow : MonoBehaviour
         }
         else
         {
-            animator.SetTrigger("Idle");
+            //animator.SetTrigger("Idle");
         }
     }
 
@@ -30,7 +30,7 @@ public class CatFollow : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isFollowing = true;
-            animator.SetTrigger("StartRunning"); // 걷는 애니메이션 트리거
+            //animator.SetTrigger("StartRunning"); // 걷는 애니메이션 트리거
         }
     }
 
@@ -39,7 +39,7 @@ public class CatFollow : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isFollowing = false;
-            animator.SetTrigger("Idle"); // 멈춤 애니메이션 트리거
+            //animator.SetTrigger("Idle"); // 멈춤 애니메이션 트리거
         }
     }
 
@@ -55,7 +55,7 @@ public class CatFollow : MonoBehaviour
         else
         {
             isFollowing = false;
-            animator.SetTrigger("Idle"); // 플레이어와 가까워지면 멈춤 애니메이션 트리거
+            //animator.SetTrigger("Idle"); // 플레이어와 가까워지면 멈춤 애니메이션 트리거
         }
     }
 }

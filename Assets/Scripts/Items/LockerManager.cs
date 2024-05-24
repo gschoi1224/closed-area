@@ -8,6 +8,7 @@ public class LockerManager : MonoBehaviour
     private GameObject player;
     public Transform outsidePosition; // 플레이어가 나올 위치
     public Transform hidePosition;
+    public Monster Monster;
 
     void Start()
     {
@@ -45,6 +46,10 @@ public class LockerManager : MonoBehaviour
     IEnumerator EnterCabinet()
     {
         animator.SetTrigger("open");
+        if (Monster != null)
+        {
+            Monster.GoRespawn();
+        }
         Debug.Log(hidePosition.position);
         yield return new WaitForSeconds(0.35f); // 애니메이션 길이에 맞게 조정
         player.transform.position = hidePosition.position;
@@ -55,6 +60,10 @@ public class LockerManager : MonoBehaviour
     IEnumerator ExitCabinet()
     {
         animator.SetTrigger("open");
+        if (Monster != null)
+        {
+            Monster.GoToPlayer();
+        }
         yield return new WaitForSeconds(0.35f); // 애니메이션 길이에 맞게 조정
         player.transform.position = outsidePosition.position; // 플레이어를 캐비닛 밖으로 이동
         player.SetActive(true); // 플레이어를 보이게 함
