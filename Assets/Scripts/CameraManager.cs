@@ -22,7 +22,8 @@ public class CameraManager : MonoBehaviour
     void FixedUpdate()
     {
         // ����� �ִ��� üũ
-        if(isTargeting && target.gameObject != null)
+        
+        if (isTargeting && target.gameObject != null)
         {
             targetPosition.Set(target.transform.position.x, target.transform.position.y, this.transform.position.z);
 

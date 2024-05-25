@@ -21,7 +21,6 @@ public class FlashManager : MonoBehaviour
         {
             if (this.name == "flashlight")
             {
-                Debug.Log("get a flashlight");
                 thePlayer.itemname = "flashlight";
                 EquipFlashlight();
             }
@@ -37,7 +36,8 @@ public class FlashManager : MonoBehaviour
     private void EquipFlashlight()
     {
         // 인벤토리 내 아이템 활성화
-        inventoryitem.SetActive(true);
+        //inventoryitem.SetActive(true);
+        InventoryManager.instance.addItem(inventoryitem);
         TextLoader.instance.SetText(settext);
         thePlayer.haveitem = true;
         gameObject.SetActive(false);
@@ -48,7 +48,7 @@ public class FlashManager : MonoBehaviour
     private void UseFlashlight()
     {
         // 인벤토리 내 아이템 비활성화
-        inventoryitem.SetActive(false);
+        InventoryManager.instance.removeSpecificItem(inventoryitem);
         thePlayer.haveitem = false;
         thePlayer.itemname = "";
         thePlayer.useflash = true;

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RedKey : MonoBehaviour
 {
+    public GameObject InventoryItem;
     private bool triggerOn = false;
     private PlayerMove thePlayer;
 
@@ -23,6 +24,7 @@ public class RedKey : MonoBehaviour
                 thePlayer.hasRedKey = true;
                 gameObject.SetActive(false);
                 TextLoader.instance.SetText("GetKey");
+                InventoryManager.instance.addItem(InventoryItem);
             }
         }
     }

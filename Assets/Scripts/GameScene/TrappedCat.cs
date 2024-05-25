@@ -5,6 +5,7 @@ public class TrappedCat : MonoBehaviour
     private bool triggerOn = false;
     private PlayerMove thePlayer;
     public GameObject EmptyBox;
+    public GameObject InventoryItem;
 
     void Start()
     {
@@ -22,6 +23,7 @@ public class TrappedCat : MonoBehaviour
             EmptyBox.SetActive(true);
             gameObject.SetActive(false);
             TextLoader.instance.SetText("SaveCat");
+            InventoryManager.instance.addItem(InventoryItem);
         }
     }
 

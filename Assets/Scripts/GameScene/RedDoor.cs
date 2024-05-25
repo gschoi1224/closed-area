@@ -11,6 +11,7 @@ public class RedDoor : MonoBehaviour
     public GameObject Monster;
     public Monster CMonster;
     public GameObject OpenedDoor;
+    public GameObject InventoryItem;
 
     private void Start()
     {
@@ -39,6 +40,7 @@ public class RedDoor : MonoBehaviour
                 CMonster.GoToPlayer();
                 OpenedDoor.SetActive(true);
                 gameObject.SetActive(false);
+                InventoryManager.instance.removeSpecificItem(InventoryItem);
             }
             else if (!thePlayer.hasRedKey)
             {

@@ -12,6 +12,7 @@ public class SilverDoorManager : MonoBehaviour
     public string openDoor;
     public GameObject Wall;
     public GameObject OpenedDoor;
+    public GameObject InventoryItem;
 
     private void Start()
     {
@@ -32,6 +33,7 @@ public class SilverDoorManager : MonoBehaviour
                 gameObject.SetActive(false);
                 OpenedDoor.SetActive(true);
                 isLock = false;
+                InventoryManager.instance.removeSpecificItem(InventoryItem);
             }
             else if (!thePlayer.hasSilverKey)
             {

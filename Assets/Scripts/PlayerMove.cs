@@ -18,6 +18,7 @@ public class PlayerMove : MonoBehaviour
     public bool hasSilverKey = false;
     public bool hasRedKey = false;
     public bool saveCat = false;
+    public GameObject InventoryFlash;
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +52,7 @@ public class PlayerMove : MonoBehaviour
         if (Input.GetKeyDown (KeyCode.S) && haveitem)
         {
             useitem = true;
+            InventoryManager.instance.removeSpecificItem(InventoryFlash);
         }
         if (Input.GetKeyUp (KeyCode.S))
         {

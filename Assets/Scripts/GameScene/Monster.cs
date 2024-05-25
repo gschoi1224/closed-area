@@ -34,7 +34,7 @@ public class Monster : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
             lastMoveDirection = direction;
 
-            // 장애물 체크
+             //장애물 체크
             //RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, rayDistance, obstacleLayer);
             //if (hit.collider != null)
             //{

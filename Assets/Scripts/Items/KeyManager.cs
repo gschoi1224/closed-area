@@ -7,6 +7,7 @@ public class KeyManager : MonoBehaviour
     private bool triggerOn = false;
     private PlayerMove thePlayer;
     public string settext;
+    public GameObject inventoryItem;
 
     void Start()
     {
@@ -25,6 +26,7 @@ public class KeyManager : MonoBehaviour
                 thePlayer.hasSilverKey = true;
                 gameObject.SetActive(false);
                 TextLoader.instance.SetText(settext);
+                InventoryManager.instance.addItem(inventoryItem);
             }
         }
     }

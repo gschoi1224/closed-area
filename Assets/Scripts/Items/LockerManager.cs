@@ -9,6 +9,9 @@ public class LockerManager : MonoBehaviour
     public Transform outsidePosition; // 플레이어가 나올 위치
     public Transform hidePosition;
     public Monster Monster;
+    private SpriteRenderer spriteRenderer;
+    private Color color;
+
 
     void Start()
     {
@@ -20,16 +23,14 @@ public class LockerManager : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             player = other.gameObject;
+            spriteRenderer = player.GetComponent<SpriteRenderer>();
+            color = spriteRenderer.color;
         }
     }
 
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            //player = null;
-        }
-    }
+    //void OnTriggerExit2D(Collider2D other)
+    //{
+    //}
 
     void Update()
     {
@@ -37,7 +38,7 @@ public class LockerManager : MonoBehaviour
         {
             StartCoroutine(EnterCabinet());   
         }
-        if (isPlayerInside && Input.GetKeyDown(KeyCode.A))
+        if (isPlayerInside && (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.DownArrow)))
         {
             StartCoroutine(ExitCabinet());
         }
@@ -50,11 +51,11 @@ public class LockerManager : MonoBehaviour
         {
             Monster.GoRespawn();
         }
-        Debug.Log(hidePosition.position);
         SoundManager.instance.PlayEffect(6);
         yield return new WaitForSeconds(0.35f); // 애니메이션 길이에 맞게 조정
-        player.transform.position = hidePosition.position;
-        player.SetActive(false); // 플레이어를 보이지 않게 함
+        //player.transform.position = hidePosition.position;
+        //player.SetActive(false); // 플레이어를 보이지 않게 
+        spriteRenderer.color = new Color(0,0,0,0);
         isPlayerInside = true;
     }
 
@@ -67,9 +68,9 @@ public class LockerManager : MonoBehaviour
         }
         SoundManager.instance.PlayEffect(6);
         yield return new WaitForSeconds(0.35f); // 애니메이션 길이에 맞게 조정
-        player.transform.position = outsidePosition.position; // 플레이어를 캐비닛 밖으로 이동
-        player.SetActive(true); // 플레이어를 보이게 함
+        //player.transform.position = outsidePosition.position; // 플레이어를 캐비닛 밖으로 이동
+        //player.SetActive(true); // 플레이어를 보이게 함
         isPlayerInside = false;
-        player = null;
+        spriteRenderer.color = color;
     }
 }
